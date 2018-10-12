@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  mylib_client:
+    image: ebiven/vue-cli
+    user: "${UID}:${GID}"
+    command: yarn serve
+    environment:
+      - VUE_APP_DOMAIN_TEST=http://127.0.0.1:8080 # домен контейнера с локально запущенным проектом
+      - VUE_APP_DOMAIN_REAL=http://my-lib.ru # реальный домен
+    volumes:
+      - .:/code
+    ports:
+      - "8080:8080"

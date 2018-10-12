@@ -1,0 +1,18 @@
+version: '3'
+
+networks:
+  proxy_network:
+    external: true
+
+services:
+  mylib_client:
+    image: ebiven/vue-cli
+    user: "${UID}:${GID}"
+    command: yarn serve
+    environment:
+      - VUE_APP_DOMAIN_TEST=http://mylib.test # http://127.0.0.1:8080
+      - VUE_APP_DOMAIN_REAL=http://my-lib.ru # реальный домен
+    volumes:
+      - .:/code
+    networks:
+      - proxy_network
