@@ -1,21 +1,17 @@
-# client
+# client (http://my-lib.ru)
 
-## Project setup
+## Start with docker-compose
+для установки зависимостей запускаем в папке проекта:
 ```
-yarn install
+docker run --rm --interactive --tty \
+ --user $(id -u):$(id -g) \
+ --volume $PWD:$PWD \
+ --workdir $PWD \
+ebiven/vue-cli yarn install
 ```
-
-### Compiles and hot-reloads for development
+для запуска и рестарта контейнера:
 ```
-yarn run serve
+bash restart.sh
 ```
-
-### Compiles and minifies for production
-```
-yarn run build
-```
-
-### Lints and fixes files
-```
-yarn run lint
-```
+при необходимости помненять в docker-compose.single.yml VUE_APP_DOMAIN_TEST
+переменная должна указывать на адрес и порт докер контейнера
